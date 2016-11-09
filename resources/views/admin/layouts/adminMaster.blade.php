@@ -356,6 +356,18 @@
             <li {{ Request::is('admin/users/create') ? 'class=active' : '' }}><a href="{{ route('add.user') }}"><i class="fa fa-plus"></i>Add User</a></li>
           </ul>
         </li>
+        <li class="{{ Request::is('admin/bullding*') ? 'active' : '' }} treeview">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>Bulldings</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li {{ Request::is('admin/bullding') ? 'class=active' : '' }}><a href="{{ route('bulldings') }}"><i class="fa fa-eye"></i> Show All Users</a></li>
+            <li {{ Request::is('admin/bulldings/create') ? 'class=active' : '' }}><a href="{{ route('add.user') }}"><i class="fa fa-plus"></i>Add User</a></li>
+          </ul>
+        </li>
         {{-- <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>

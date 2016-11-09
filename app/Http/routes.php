@@ -14,6 +14,11 @@ Route::group(['middleware' => 'admin'], function () {
                'as' => 'user.data'
           ]);
 
+          Route::get('/bullding/data', [
+               'uses' => 'BulldingController@anyData',
+               'as' => 'bullding.data'
+          ]);
+
           Route::get('/', [
                'uses' => 'AdminController@getAdminIndex',
                'as' => 'dashboard'
@@ -48,6 +53,17 @@ Route::group(['middleware' => 'admin'], function () {
           Route::post('/site_setting/update', [
                'uses' => 'siteSettingController@store',
                'as' => 'siteSetting.update'
+          ]);
+
+
+          Route::resource('/bulldings', 'BulldingController', [
+               'names' => [
+                    'index' => 'bulldings',
+                    'create' => 'add.user',
+                    'store' => 'create.user',
+                    'edit' => 'edit.user',
+                    'update' => 'update.user'
+               ]
           ]);
 
 
