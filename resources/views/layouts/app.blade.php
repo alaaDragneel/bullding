@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Bullding Site | @yield('title')</title>
+    <title> {{ getSetting()  }} | @yield('title')</title>
     {{-- styles & fonts--}}
      {!! Html::style('src/frontend/css/font-awesome.min.css') !!}
      {!! Html::style('src/frontend/css/bootstrap.min.css') !!}

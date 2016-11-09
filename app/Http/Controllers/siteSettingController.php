@@ -16,15 +16,17 @@ class siteSettingController extends Controller
 	    return view('admin.siteSetting.index', compact('siteSetting'));
     }
 
-    public function store(Request $request)
-    {
-	    foreach (array_except($request->toArray(), ['_token']) as $key => $req) {
-	         $siteSettingUpdate = new SiteSetting();
-
-              $siteSettingUpdate->where('nameSetting', $key)->get();
-
-              $siteSettingUpdate->fill(['value' => $req])->update();
-	    }
-	    return redirect()->back()->with(['success' => 'the data upated successfully']);
-    }
+    // public function store(Request $request)
+    // {
+    //  foreach (array_except($request->toArray(), ['_token']) as $key) {
+    //       $siteSettingUpdate = SiteSetting::where('nameSetting', $key)->get();
+    //           dd($siteSettingUpdate);
+    //           $siteSettingUpdate->value = $request->siteName;
+    //           $siteSettingUpdate->value = $request->facebook;
+    //           $siteSettingUpdate->value = $request->sitePhone;
+    //           $siteSettingUpdate->value = $request->siteDesc;
+    //           $siteSettingUpdate->update();
+    //  }
+    //  return redirect()->back()->with(['success' => 'the data upated successfully']);
+    // }
 }
