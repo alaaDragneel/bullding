@@ -364,8 +364,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li {{ Request::is('admin/bullding') ? 'class=active' : '' }}><a href="{{ route('bulldings') }}"><i class="fa fa-eye"></i> Show All Users</a></li>
-            <li {{ Request::is('admin/bulldings/create') ? 'class=active' : '' }}><a href="{{ route('add.user') }}"><i class="fa fa-plus"></i>Add User</a></li>
+            <li {{ Request::is('admin/bullding') ? 'class=active' : '' }}><a href="{{ route('bulldings') }}"><i class="fa fa-eye"></i> Show All Bullding</a></li>
+            <li {{ Request::is('admin/bulldings/create') ? 'class=active' : '' }}><a href="{{ route('add.user') }}"><i class="fa fa-plus"></i>Add Bullding</a></li>
           </ul>
         </li>
         {{-- <li class="treeview">
