@@ -1,21 +1,22 @@
 @if(Session::has('fail'))
-	<section class="alert alert-danger">
-		{{ Session::get('fail') }}
-	</section>
+     <script type="text/javascript">
+     swal({
+          title: "faild",
+          text: "{{ Session::get('fail') }}",
+          timer: 2000,
+          showConfirmButton: false
+     });
+     </script>
 @endif
 
 @if(Session::has('success'))
-	<section class="alert alert-success">
-		{{ Session::get('success') }}
-	</section>
-@endif
-
-@if (count($errors) > 0)
-	<section class="alert alert-danger">
-		<ul>
-			@foreach ($errors->all() as $error)
-				<i>{{ $error }}</i>
-			@endforeach
-		</ul>
-	</section>
+     <script type="text/javascript">
+     swal({
+          type: "success",
+          title: "{{ Session::get('success') }}",
+          text: "Successfully this message will disappear after 4s",
+          timer: 4000,
+          showConfirmButton: false
+     });
+     </script>
 @endif

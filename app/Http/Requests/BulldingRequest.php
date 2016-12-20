@@ -13,7 +13,7 @@ class BulldingRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class BulldingRequest extends Request
     public function rules()
     {
         return [
-            //
+          'name'          => 'required|min:5|max:100',
+          'price'         => 'required',
+          'rent'          => 'required|integer',
+          'square'        => 'required|min:2|max:10',
+          'type'          => 'required|integer',
+          'small_dis'     => 'required|min:5|max:160',
+          'meta'          => 'required|min:5|max:200',
+          'langtuide'     => 'required',
+          'latitiute'     => 'required',
+          'decription'    => 'required|min:5',
+          'status'        => 'required|integer',
+          'rooms'         => 'required|integer',
         ];
     }
 }

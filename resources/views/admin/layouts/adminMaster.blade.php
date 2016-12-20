@@ -29,6 +29,8 @@
   <link rel="stylesheet" href="{{asset('src/backend/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('src/backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+  {{-- custome folder {global directory} --}}
+  <link rel="stylesheet" href="{{asset('src/global/sweetalert.css')}}">
   @yield('styles')
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -343,7 +345,7 @@
             <li {{ Request::is('admin/site_setting') ? 'active' : '' }}><a href="{{ route('siteSetting') }}"><i class="fa fa-circle-o"></i> Site Setting</a></li>
           </ul>
         </li>
-
+        {{-- users --}}
         <li class="{{ Request::is('admin/user*') ? 'active' : '' }} treeview">
           <a href="#">
             <i class="fa fa-users"></i> <span>Users</span>
@@ -356,6 +358,7 @@
             <li {{ Request::is('admin/users/create') ? 'class=active' : '' }}><a href="{{ route('add.user') }}"><i class="fa fa-plus"></i>Add User</a></li>
           </ul>
         </li>
+        {{-- bullding --}}
         <li class="{{ Request::is('admin/bullding*') ? 'active' : '' }} treeview">
           <a href="#">
             <i class="fa fa-users"></i> <span>Bulldings</span>
@@ -364,8 +367,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li {{ Request::is('admin/bullding') ? 'class=active' : '' }}><a href="{{ route('bulldings') }}"><i class="fa fa-eye"></i> Show All Bullding</a></li>
-            <li {{ Request::is('admin/bulldings/create') ? 'class=active' : '' }}><a href="{{ route('add.user') }}"><i class="fa fa-plus"></i>Add Bullding</a></li>
+               <li {{ Request::is('admin/bulldings/create') ? 'class=active' : '' }}><a href="{{ route('admin.bulldings.create') }}"><i class="fa fa-plus"></i>Add Bullding</a></li>
+            <li {{ Request::is('admin/bullding') ? 'class=active' : '' }}><a href="{{ route('admin.bulldings.index') }}"><i class="fa fa-eye"></i> Show All Bullding</a></li>
           </ul>
         </li>
         {{-- <li class="treeview">
@@ -773,6 +776,9 @@
 <script src="{{asset('src/backend/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('src/backend/dist/js/demo.js')}}"></script>
+<!-- Custum folder -->
+<script src="{{asset('src/global/sweetalert.min.js')}}"></script>
+@include('includes.infoBox')
 @yield('scripts')
 </body>
 </html>

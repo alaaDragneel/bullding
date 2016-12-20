@@ -14,7 +14,6 @@
 	    <li><a href="{{ route('add.user') }}">Add User</a></li>
 	  </ol>
 	</section>
-		@include('includes.infoBox')
 	<section class="content">
 	 	<div class="row">
 	 	  	<div class="col-xs-12">
@@ -23,7 +22,7 @@
 		               <h3 class="box-title">Add New user</h3>
 		             </div>
 		             <!-- /.box-header -->
-					   	@include('admin.users.form')	
+					   	@include('admin.users.form')
 				   </div>
 			    </div>
 	    		</div>

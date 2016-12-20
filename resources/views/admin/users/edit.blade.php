@@ -14,7 +14,6 @@
 	    <li><a href="{{ route('edit.user', ['user_id' => $user->id]) }}">Edit User {{ $user->name }}</a></li>
 	  </ol>
 	</section>
-		@include('includes.infoBox')
 	<section class="content">
 	 	<div class="row">
 	 	  	<div class="col-xs-12">

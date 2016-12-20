@@ -18,7 +18,6 @@
         <li><a href="{{ route('users') }}">Users and Members</a></li>
       </ol>
     </section>
-	@include('includes.infoBox')
     <section class="content">
 	<div class="row">
 	  <div class="col-xs-12">

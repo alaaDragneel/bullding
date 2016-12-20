@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bullding extends Model
 {
-	protected $fillable = [ 'name', 'price', 'rent', 'square', 'type', 'small_dis', 'meta', 'langtuide', 'latitiute', 'decription', 'status', 'user_id' ];
+	protected $fillable = [
+		'name', 'price', 'rent', 'square', 'type', 'small_dis', 'meta', 'langtuide', 'latitiute', 'decription', 'status', 'user_id', 'rooms'
+	];
 }

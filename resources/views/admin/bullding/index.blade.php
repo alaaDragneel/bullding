@@ -18,7 +18,6 @@
         <li><a href="{{ route('users') }}">Bulldings</a></li>
       </ol>
     </section>
-	@include('includes.infoBox')
     <section class="content">
 	<div class="row">
 	  <div class="col-xs-12">
@@ -37,9 +36,9 @@
 									<th>#ID</th>
 									<th >Name</th>
 									<th >Price</th>
-									<th >Add On</th>
-									<th >Status</th>
-									<th >type</th>
+                                             <th >type</th>
+                                             <th >Status</th>
+                                             <th >Add On</th>
 									<th >Actions</th>
 								</tr>
                    				</thead>
@@ -51,10 +50,10 @@
 									<th>#ID</th>
 									<th >Name</th>
 									<th >Price</th>
+                                             <th >type</th>
+                                             <th >Status</th>
 									<th >Add On</th>
-									<th >Status</th>
-									<th >type</th>
-									<th colspan="2">More Information</th>
+									<th >Actions</th>
 
 								</tr>
                    				</tfoot>
@@ -86,11 +85,22 @@
 
 $('#myTableData tfoot th').each( function () {
 	var classname = 'form-control'
- if($(this).index()  < 3 ){
+ if($(this).index()  < 5 && $(this).index() !== 3){
 	var title = $(this).html();
 	$(this).html( '<input type="text" class="' + classname + '" data-value="'+ $(this).index() +'" placeholder=" search by '+title+'" />');
 }else if($(this).index() == 3){
-	$(this).html( '<select class="' + classname + '"><option value="0"> User </option><option value="1"> Admin </option></select>' );
+	$(this).html( '<select class="' + classname + '">'+
+     @foreach(type() as $key => $value)
+     '<option value="{{$key}}">{{$value}}</option>'+
+     @endforeach
+     +'</select>' );
+}
+if($(this).index() == 4){
+     $(this).html( '<select class="' + classname + '">'+
+     @foreach(status() as $key => $value)
+     '<option value="{{$key}}">{{$value}}</option>'+
+     @endforeach
+     +'</select>' );
  }
 
 });
@@ -103,8 +113,8 @@ var table = $('#myTableData').DataTable({
 	{data: 'id', name: 'id'},
 	{data: 'name', name: 'name'},
 	{data: 'price', name: 'price'},
+     {data: 'type', name: 'type'},
 	{data: 'status', name: 'status'},
-	{data: 'type', name: 'type'},
 	{data: 'created_at', name: 'created_at'},
 	{data: 'actions', name: ''},
  ],

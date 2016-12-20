@@ -19,6 +19,7 @@
               <div class="menu"> <a class="toggleMenu" href="#">{!! Html::image('src/frontend/images/nav_icon.png') !!}</a>
                 <ul class="nav" id="nav">
                   <li  {{ Request::is('home') ? 'class=current' : '' }}><a href="{{ route('home') }}">Home</a></li>
+                  <li  {{ Request::is('bullding') ? 'class=current' : '' }}><a href="{{ route('show.all.bullding') }}">Bullding</a></li>
                   <li><a href="about.html">About Us</a></li>
                   <li><a href="services.html">Services</a></li>
                   <li><a href="contact.html">Contact Us</a></li>

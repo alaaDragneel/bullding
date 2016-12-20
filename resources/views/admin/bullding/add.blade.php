@@ -1,29 +1,28 @@
 @extends('admin.layouts.adminMaster')
 
 @section('title')
-	Add Users
+	Add New Bullding
 @endsection
 
 @section('content')
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-	  <h1>Add User</h1>
+	  <h1>Add New Bullding</h1>
 	  <ol class="breadcrumb">
 	    <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-	    <li><a href="{{ route('users') }}">Users and Members</a></li>
-	    <li><a href="{{ route('add.user') }}">Add User</a></li>
+	    <li><a href="{{ route('admin.bulldings.index') }}">Bullding</a></li>
+	    <li><a href="{{ route('admin.bulldings.create') }}">Add New Bullding</a></li>
 	  </ol>
 	</section>
-		@include('includes.infoBox')
 	<section class="content">
 	 	<div class="row">
 	 	  	<div class="col-xs-12">
 		          <div class="box">
 		             <div class="box-header">
-		               <h3 class="box-title">Add New user</h3>
+		               <h3 class="box-title">Add New Bullding</h3>
 		             </div>
 		             <!-- /.box-header -->
-					   	@include('admin.users.form')	
+					   	@include('admin.bullding.form')
 				   </div>
 			    </div>
 	    		</div>
