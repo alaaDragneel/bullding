@@ -91,10 +91,23 @@
 			   <label for="status" class="col-md-4 control-label">bullding status</label>
 
 			   <div class="col-md-6">
-				  {!! Form::select('status', status(), null, ['class' => 'form-control', 'id' => 'status']); !!}
+				  {!! Form::select('status', status(), null, ['class' => 'form-control', 'id' => 'status']) !!}
 				  @if ($errors->has('status'))
 					 <span class="help-block">
 						<strong>{{ $errors->first('status') }}</strong>
+					 </span>
+				  @endif
+			   </div>
+		    </div>
+		    {{-- bullding_plcae --}}
+              <div class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
+			   <label for="place" class="col-md-4 control-label">bullding place</label>
+
+			   <div class="col-md-6">
+				  {!! Form::select('place', place(), null, ['class' => 'form-control', 'id' => 'place']) !!}
+				  @if ($errors->has('place'))
+					 <span class="help-block">
+						<strong>{{ $errors->first('place') }}</strong>
 					 </span>
 				  @endif
 			   </div>

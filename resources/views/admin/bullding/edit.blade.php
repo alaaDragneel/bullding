@@ -119,6 +119,19 @@
                                         @endif
                                    </div>
                               </div>
+                              {{-- bullding_place --}}
+                              <div class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
+                                   <label for="place" class="col-md-4 control-label">bullding place</label>
+
+                                   <div class="col-md-6">
+                                         {!! Form::select('place', place(), null, ['class' => 'form-control', 'id' => 'place']) !!}
+                                        @if ($errors->has('place'))
+                                             <span class="help-block">
+                                                  <strong>{{ $errors->first('place') }}</strong>
+                                             </span>
+                                        @endif
+                                   </div>
+                              </div>
                               {{-- bullding_meta --}}
                               <div class="form-group{{ $errors->has('meta') ? ' has-error' : '' }}">
                                    <label for="meta" class="col-md-4 control-label">bullding meta</label>

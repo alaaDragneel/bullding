@@ -78,7 +78,6 @@
 	<!-- DataTables -->
 	{!! Html::script('src/backend/plugins/datatables/jquery.dataTables.min.js') !!}
 	{!! Html::script('src/backend/plugins/datatables/dataTables.bootstrap.min.js') !!}
-
 	<script type="text/javascript">
 
  var lastIdx = null;

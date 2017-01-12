@@ -107,6 +107,12 @@ Route::group(['middleware' => 'admin'], function () {
      'as' => 'show.home.bullding'
  ]);
 
+ // Search
+  Route::post('/bullding/Search', [
+     'uses' => 'BulldingController@search',
+     'as' => 'search'
+ ]);
+
   Route::get('/home', [
   'uses' => 'HomeController@index',
   'as' => 'home'

@@ -33,3 +33,26 @@ function status()
 	];
 	return $array;
 }
+
+function roomsNu()
+{
+   $array = [];
+
+   for ($i=2; $i <= 40; $i++) {
+      $array[$i] = $i;
+   }
+
+   return $array;
+}
+
+function place()
+{
+   $array = [
+      'Cairo',
+		'Imbaba',
+		'Giza',
+		'Shoubra',
+		'Nasr City',
+	];
+	return $array;
+}

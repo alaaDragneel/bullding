@@ -31,6 +31,8 @@
   <link rel="stylesheet" href="{{asset('src/backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
   {{-- custome folder {global directory} --}}
   <link rel="stylesheet" href="{{asset('src/global/sweetalert.css')}}">
+  {!! Html::style('src/global/select2.min.css') !!}
+
   @yield('styles')
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -778,6 +780,10 @@
 <script src="{{asset('src/backend/dist/js/demo.js')}}"></script>
 <!-- Custum folder -->
 <script src="{{asset('src/global/sweetalert.min.js')}}"></script>
+{!! Html::script('src/global/select2.min.js') !!}
+<script type="text/javascript">
+     $('select[name=place]').select2();
+</script>
 @include('includes.infoBox')
 @yield('scripts')
 </body>

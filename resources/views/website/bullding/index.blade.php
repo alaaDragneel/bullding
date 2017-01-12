@@ -6,12 +6,61 @@
 
 @section('styles')
      {!! Html::style('src/global/bulldingAll.css') !!}
+     {!! Html::style('src/global/select2.min.css') !!}
+     <style>
+     hr {
+          margin: 10px 0;
+     }
+     p.text-justify {
+          padding-bottom: 10px;
+          margin-bottom: 10px;
+     }
+     </style>
 @endsection
 
 @section('content')
      <div class="container">
           <div class="row profile">
                <div class="col-md-3">
+                    <div class="profile-sidebar">
+                         <!-- SIDEBAR USER TITLE -->
+                         <div class="profile-usertitle">
+                              <div class="profile-usertitle-name">
+                                   <h2>Advanced Search</h2>
+                              </div>
+                         </div>
+                         <!-- END SIDEBAR USER TITLE -->
+                         <!-- SIDEBAR MENU -->
+                         <div class="profile-usermenu" style="padding: 10px;">
+                              {!! Form::open(['route' => 'search', 'action' => 'post']) !!}
+                              <ul class="nav">
+                                   <li style="margin-bottom: 10px;">
+                                        {!! Form::text("price", null, ['class' => 'form-control', 'placeholder' => 'Bulding Price...']) !!}
+                                   </li>
+                                   <li style="margin-bottom: 10px;">
+                                        {!! Form::select("place", place(), null, ['class' => 'form-control', 'placeholder' => 'Rooms place']) !!}
+                                   </li>
+                                   <li style="margin-bottom: 10px;">
+                                        {!! Form::select("rooms", roomsNu(), null, ['class' => 'form-control', 'placeholder' => 'Rooms numbers']) !!}
+                                   </li>
+                                   <li style="margin-bottom: 10px;">
+                                        {!! Form::select("type", type(), null, ['class' => 'form-control', 'placeholder' => 'Bullding Type']) !!}
+                                   </li>
+                                   <li style="margin-bottom: 10px;">
+                                        {!! Form::select("rent", rent(), null, ['class' => 'form-control', 'placeholder' => 'Bullding rent OR Buy']) !!}
+                                   </li>
+                                   <li style="margin-bottom: 10px;">
+                                        {!! Form::text("square", null, ['class' => 'form-control', 'placeholder' => 'Bulding square...']) !!}
+                                   </li>
+                                   <li style="margin-bottom: 10px;">
+                                        {!! Form::submit("search", ['class' => 'btn btn-primary btn-block btn-sm']) !!}
+                                   </li>
+                              </ul>
+                              {!! Form::close() !!}
+                         </div>
+                         <!-- END MENU -->
+                    </div>
+                    <br/>
                     <div class="profile-sidebar">
                          <!-- SIDEBAR USER TITLE -->
                          <div class="profile-usertitle">
@@ -65,13 +114,42 @@
                     </div>
                </div>
                <div class="col-md-9">
+                    <ol class="breadcrumb" style="margin-bottom: 5px; background-color: #fff;">
+                         <li><a href="{{ url('/') }}">Home</a></li>
+                         @if (isset($array))
+                              @if (!empty($array))
+                                   @foreach($array as $key => $value)
+                                        <li>
+                                             <a href="#">{{ $key }} =>
+                                                  @if ($key == 'type')
+                                                       {{ type()[$value] }}
+                                                  @elseif($key == 'rent')
+                                                       {{ rent()[$value] }}
+                                                  @elseif($key == 'place')
+                                                       {{ place()[$value] }}
+                                                  @else
+                                                       {{ $value }}
+                                                  @endif
+                                             </a>
+                                        </li>
+                                   @endforeach
+                              @endif
+                         @endif
+                    </ol>
                     <div class="profile-content">
                          @include('website.bullding.sharefile', ['bulldings' => $bulldingAll])
-                         <div class="pagination col-md-6 col-mdmd-offset-3">
-                      {!! $bulldingAll->render() !!}
-                    </div>
+                         <div class="pagination col-md-6 col-md-offset-3">
+                              {!! $bulldingAll->render() !!}
+                         </div>
                     </div>
                </div>
           </div>
      </div>
+@endsection
+
+@section('footer')
+     {!! Html::script('src/global/select2.min.js') !!}
+     <script type="text/javascript">
+          $('select[name=place]').select2();
+     </script>
 @endsection
