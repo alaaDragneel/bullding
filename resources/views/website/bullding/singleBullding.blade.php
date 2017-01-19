@@ -33,6 +33,8 @@
                     <div class="profile-content">
                          <h1>{{ $bulldingInfo->name }}</h1>
                          <hr>
+                         <img src="{{ asset($bulldingInfo->image) }}" class="img-responsive">
+                         <br>
                          <div class="btn-group" role="group">
                               <a href="{{url('/bullding/Search?price='.$bulldingInfo->price) }}" class="btn btn-primary">
                                    price: {{ $bulldingInfo->price }}

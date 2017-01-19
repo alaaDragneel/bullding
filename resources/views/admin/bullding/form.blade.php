@@ -2,7 +2,7 @@
 	  <div class="panel panel-primary">
 		  <div class="panel-heading">Register</div>
 		  <div class="panel-body">
-			<form class="form-horizontal" role="form" method="POST" action="{{ route('admin.bulldings.store') }}">
+			<form class="form-horizontal" role="form" method="POST" action="{{ route('admin.bulldings.store') }}" enctype="multipart/form-data">
 	         {{ csrf_field() }}
 		    {{-- bullding_name --}}
 	         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -180,6 +180,20 @@
 	                 @if ($errors->has('decription'))
 	                     <span class="help-block">
 	                         <strong>{{ $errors->first('decription') }}</strong>
+	                     </span>
+	                 @endif
+	             </div>
+	         </div>
+		    {{-- image --}}
+		    <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+	             <label for="image" class="col-md-4 control-label">bullding  image</label>
+
+	             <div class="col-md-6">
+	                 <input type="file" id="image" class="form-control" name="image">{{ old('image') }}</textarea>
+
+	                 @if ($errors->has('image'))
+	                     <span class="help-block">
+	                         <strong>{{ $errors->first('image') }}</strong>
 	                     </span>
 	                 @endif
 	             </div>

@@ -16,17 +16,21 @@ class siteSettingController extends Controller
 	    return view('admin.siteSetting.index', compact('siteSetting'));
     }
 
-    // public function store(Request $request)
-    // {
-    //  foreach (array_except($request->toArray(), ['_token']) as $key) {
-    //       $siteSettingUpdate = SiteSetting::where('nameSetting', $key)->get();
-    //           dd($siteSettingUpdate);
-    //           $siteSettingUpdate->value = $request->siteName;
-    //           $siteSettingUpdate->value = $request->facebook;
-    //           $siteSettingUpdate->value = $request->sitePhone;
-    //           $siteSettingUpdate->value = $request->siteDesc;
-    //           $siteSettingUpdate->update();
-    //  }
-    //  return redirect()->back()->with(['success' => 'the data upated successfully']);
-    // }
+    public function store(Request $request)
+    {
+     foreach (array_except($request->toArray(), ['_token', 'submit']) as $key => $req) {
+          $siteSettingUpdate = SiteSetting::where('nameSetting', $key)->get()[0];
+          if ($siteSettingUpdate->type !== 3) {
+             $siteSettingUpdate->fill(['value' => $req])->save();
+          } else {
+             $file = image($request->mainSlider);
+            if ($file == '') {
+               return redirect()->back()->with(['fail' => 'please Choose An Image 1440 * 1920']);
+            } else {
+               $siteSettingUpdate->fill(['value' => 'src/images/bullding/'.$file])->save();
+            }
+          }
+     }
+     return redirect()->back()->with(['success' => 'the data upated successfully']);
+    }
 }

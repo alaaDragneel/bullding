@@ -36,6 +36,8 @@ class BulldingRequest extends Request
           'decription'    => 'required|min:5',
           'status'        => 'required|integer',
           'rooms'         => 'required|integer',
+          'place'         => 'required|integer',
+          'image'         => 'image|mimes:png,jpg,jpeg',
         ];
     }
 }

@@ -25,7 +25,7 @@
                          <div class="box-body">
                               {{-- @include('admin.users.editForm') --}}
 
-                              {!! Form::model($bullding, ['method' => 'PATCH', 'route' => ['admin.bulldings.update', $bullding->id], 'class' => 'form-horizontal' ]) !!}
+                              {!! Form::model($bullding, ['method' => 'PATCH', 'route' => ['admin.bulldings.update', $bullding->id], 'class' => 'form-horizontal', 'files' => 'true']) !!}
 
                               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                    <label for="name" class="col-md-4 control-label">Name</label>
@@ -202,6 +202,28 @@
                                                   <strong>{{ $errors->first('decription') }}</strong>
                                              </span>
                                         @endif
+                                   </div>
+                              </div>
+                              {{-- image --}}
+                              <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+                                   <label for="image" class="col-md-4 control-label">bullding  image</label>
+
+                                   <div class="col-md-6">
+                                        {!! Form::file('image') !!}
+
+                                        @if ($errors->has('image'))
+                                             <span class="help-block">
+                                                  <strong>{{ $errors->first('image') }}</strong>
+                                             </span>
+                                        @endif
+                                   </div>
+                                   <br>
+                                   <div class="col-md-4">
+                                     @if (isset($bullding))
+                                          @if ($bullding->image !== '')
+                                               <img src="{{ asset($bullding->image) }}" class="img-responsive img-thumbnail">
+                                          @endif
+                                     @endif
                                    </div>
                               </div>
 

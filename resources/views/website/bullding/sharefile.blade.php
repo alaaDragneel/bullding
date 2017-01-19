@@ -2,10 +2,9 @@
      @foreach ($bulldings->chunk(3) as $bulldingChunk)
           <div class="row text-capitalize">
                @foreach ($bulldingChunk as $bullding)
-
                     <div class="col-md-4">
                          <div class="productbox">
-                              <img src="{{ asset('src/images/'.rand(1,6).'.jpg') }}" class="img-responsive" style="width: 220px; height: 239px;">
+                              <img src="{{ asset(checkImage($bullding->image)) }}" class="img-responsive" style="width: 220px; height: 239px;">
                               <div class="producttitle">{{ $bullding->name }}</div>
                               <p class="text-justify">{{ str_limit($bullding->small_dis, 70) }}</p>
                               <div class="productprice">
@@ -13,9 +12,6 @@
                                    <span class="pull-right">Operation: {{ rent()[$bullding->rent] }}</span>
                                    <div class="clearfix"></div>
                                    <span class="pull-right">Type: {{ type()[$bullding->type] }}</span>
-                                   <span class="pull-left">Rooms: {{ $bullding->rooms }}</span>
-                                   <div class="clearfix"></div>
-                                   <span class="pull-right">By: {{ $bullding->user->name }}</span>
                                    <span class="pull-left">Place: {{ place()[$bullding->place] }}</span>
                                    <div class="clearfix"></div>
                                    <hr/>

@@ -19,7 +19,7 @@
 		             <div class="box-header">
 		               <h3 class="box-title">edit Site Setting</h3>
 		             </div>
-				   	<form action="{{route('siteSetting.update')}}" method="post">
+				   	<form action="{{route('siteSetting.update')}}" method="post" enctype="multipart/form-data">
 						{{ csrf_field() }}
 		            		@foreach ($siteSetting as $site)
 							<div class="form-group{{ $errors->has($site->nameSetting) ? ' has-error' : '' }}">
@@ -27,7 +27,9 @@
 				 	             <div class="col-md-9">
 								   @if ($site->type == 0)
 									   <input id="{{ $site->nameSetting }}" type="text" class="form-control" name="{{ $site->nameSetting }}" value="{{ $site->value }}">
-								   @else
+								   @elseif ($site->type == 3)
+                                             <input type="file" class="form-control" name="{{ $site->nameSetting }}">
+                                           @else
 									   <textarea class="form-control" name="{{ $site->nameSetting }}">{{ $site->value }}</textarea>
 								   @endif
 

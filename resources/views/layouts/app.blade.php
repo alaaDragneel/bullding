@@ -20,8 +20,28 @@
                 <ul class="nav" id="nav">
                   <li  {{ Request::is('home') ? 'class=current' : '' }}><a href="{{ route('home') }}">Home</a></li>
                   <li  {{ Request::is('bullding') ? 'class=current' : '' }}><a href="{{ route('show.all.bullding') }}">Bullding</a></li>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="services.html">Services</a></li>
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                         Rent <span class="caret"></span>
+                      </a>
+
+                      <ul class="dropdown-menu" role="menu">
+                           @foreach (type() as $key => $type)
+                                <li><a href="{{ url('/bullding/Search?rent=0&type=' . $key) }}"><i class="glyphicon glyphicon-yen"></i> {{ $type }}</a></li>
+                           @endforeach
+                      </ul>
+                  </li>
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                         Buy <span class="caret"></span>
+                      </a>
+
+                      <ul class="dropdown-menu" role="menu">
+                         @foreach (type() as $key => $type)
+                              <li><a href="{{ url('/bullding/Search?rent=1&type=' . $key) }}"><i class="glyphicon glyphicon-euro"></i> {{ $type }}</a></li>
+                         @endforeach
+                      </ul>
+                  </li>
                   <li><a href="contact.html">Contact Us</a></li>
                   <!-- Authentication Links -->
                   @if (Auth::guest())

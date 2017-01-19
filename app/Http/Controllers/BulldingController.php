@@ -37,6 +37,15 @@ class BulldingController extends Controller
    */
    public function store(BulldingRequest $request, Bullding $bullding)
    {
+      if ($request->file('image')) {
+         $file = image($request->image);
+         if ($file == '') {
+            return redirect()->back()->with(['fail' => 'please Choose An Image 1440 * 1920']);
+         }
+         $image = 'src/images/bullding/' . $file;
+      } else {
+         $image = avatar();
+      }
       $user = Auth::user();
       $data = [
          'name'          => $request->name,
@@ -51,9 +60,12 @@ class BulldingController extends Controller
          'decription'    => $request->decription,
          'status'        => $request->status,
          'rooms'         => $request->rooms,
+         'place'         => $request->place,
+         'image'         => $image,
          'user_id'       => $user->id,
       ];
       $bullding->create($data);
+
       return redirect()->route('admin.bulldings.index')->with(['success' => 'The Bullding Created Successfully']);
    }
 
@@ -66,7 +78,17 @@ class BulldingController extends Controller
    public function update(BulldingRequest $request, $id)
    {
       $bulldingUpdate = Bullding::findOrFail($id);
-      $bulldingUpdate->fill($request->all())->save();
+      $bulldingUpdate->fill(array_except($request->all(), 'image'))->save();
+
+      if ($request->file('image')) {
+         $file = image($request->image);
+         if ($file == '') {
+            return redirect()->back()->with(['fail' => 'please Choose An Image 1440 * 1920']);
+         }
+      }
+
+      $bulldingUpdate->fill(['image' => 'src/images/bullding/'.$file])->save();
+
       return redirect()->back()->with(['success' => 'The Bullding Updated Successfully']);
    }
 
@@ -236,5 +258,16 @@ class BulldingController extends Controller
       // same Type
       $sameType = $bullding->where('rent', $bulldingInfo->type)->orderBy(DB::raw('RAND()'))->take(3)->get();
       return view('website.bullding.singleBullding', compact('bulldingInfo', 'sameRent', 'sameType'));
+   }
+
+   /**
+   * this function used to view the bullding details for the welcome page via ajax
+   * @var Bullding $bullding
+   * @return view
+   */
+   public function ajaxInfo(Request $request, Bullding $bullding)
+   {
+      // find the bullding by id
+      return $bulldingInfo = $bullding->findOrFail($request->id)->toJson();
    }
 }

@@ -119,6 +119,12 @@ Route::group(['middleware' => 'admin'], function () {
      'as' => 'show.single.bullding'
  ]);
 
+ // get ajax bullding information
+  Route::get('/ajax/bullding/show/', [
+     'uses' => 'BulldingController@ajaxInfo',
+     'as' => 'show.ajax.bullding'
+ ]);
+
   Route::get('/home', [
   'uses' => 'HomeController@index',
   'as' => 'home'
