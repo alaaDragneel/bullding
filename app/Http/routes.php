@@ -113,6 +113,12 @@ Route::group(['middleware' => 'admin'], function () {
      'as' => 'search'
  ]);
 
+ // get single bullding
+  Route::get('/bullding/singleShow/{id}', [
+     'uses' => 'BulldingController@singleShow',
+     'as' => 'show.single.bullding'
+ ]);
+
   Route::get('/home', [
   'uses' => 'HomeController@index',
   'as' => 'home'

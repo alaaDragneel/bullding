@@ -14,7 +14,7 @@
                                    <div class="clearfix"></div>
                                    <hr/>
                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-primary btm-sm" role="button">Show Details
+                                        <a href="{{ route('show.single.bullding', ['id' => $bullding->id]) }}" class="btn btn-primary btm-sm" role="button">Show Details
                                              <span class="glyphicon glyphicon-info-sign"></span>
                                         </a>
                                    </div>

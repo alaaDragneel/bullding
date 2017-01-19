@@ -220,4 +220,14 @@ class BulldingController extends Controller
       *   // $bulldingAll = DB::select($query);
       */
    }
+
+   /**
+   * this function used to view the single bullding details
+   * @return single view
+   */
+   public function singleShow($id, Bullding $bullding)
+   {
+      $bulldingInfo = $bullding->findOrFail($id);
+      return view('website.bullding.singleBullding', compact('bulldingInfo'));
+   }
 }
