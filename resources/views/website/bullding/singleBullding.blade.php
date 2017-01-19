@@ -23,11 +23,13 @@
           <div class="row profile">
                @include('website.bullding.page')
                <div class="col-md-9">
+                    {{-- breadcrumb --}}
                     <ol class="breadcrumb" style="margin-bottom: 5px; background-color: #fff;">
                          <li><a href="{{ url('/') }}">Home</a></li>
                          <li><a href="{{ route('show.all.bullding') }}">Show All Bullding</a></li>
                          <li><a href="{{ route('show.single.bullding', ['id' => $bulldingInfo->id]) }}">{{ $bulldingInfo->name }}</a></li>
                     </ol>
+                    {{-- profile-content --}}
                     <div class="profile-content">
                          <h1>{{ $bulldingInfo->name }}</h1>
                          <hr>
@@ -51,12 +53,18 @@
                                    Bullding Type: {{ rent()[$bulldingInfo->rent] }}
                               </a>
                          </div>
-
-                         <p>
+                         <p style="margin-top: 10px;">
                               {!! nl2br($bulldingInfo->decription) !!}
                          </p>
                          <br>
-                         <div id="map" style="width:100%;height:500px"></div>
+                         <div id="map" style="width:100%; height:500px"></div>
+                    </div>
+                    {{-- similer --}}
+                    <div class="profile-content" style="margin-top: 20px;">
+                         <h3>others Bullding</h3>
+                         <hr>
+                         @include('website.bullding.sharefile', ['bulldings' => $sameRent])
+                         @include('website.bullding.sharefile', ['bulldings' => $sameType])
                     </div>
                </div>
           </div>

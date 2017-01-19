@@ -106,7 +106,7 @@ class BulldingController extends Controller
 
    public function showAllEnabled(Bullding $bullding)
    {
-      $bulldingAll = $bullding->where('status', 1)->orderBy('id', 'DESC')->paginate(3, ['*'], 'bullding');
+      $bulldingAll = $bullding->where('status', 1)->orderBy('id', 'DESC')->paginate(6, ['*'], 'bullding');
 
       return view('website.bullding.index', compact('bulldingAll'));
    }
@@ -116,7 +116,7 @@ class BulldingController extends Controller
       $bulldingAll = $bullding->where(function($q) {
          $q->where('status', 1)
          ->where('rent', 0);
-      })->orderBy('id', 'DESC')->paginate(3, ['*'], 'bullding');
+      })->orderBy('id', 'DESC')->paginate(6, ['*'], 'bullding');
 
       return view('website.bullding.index', compact('bulldingAll'));
    }
@@ -126,7 +126,7 @@ class BulldingController extends Controller
       $bulldingAll = $bullding->where(function($q) {
          $q->where('status', 1)
          ->where('rent', 1);
-      })->orderBy('id', 'DESC')->paginate(3, ['*'], 'bullding');
+      })->orderBy('id', 'DESC')->paginate(6, ['*'], 'bullding');
 
       return view('website.bullding.index', compact('bulldingAll'));
    }
@@ -136,7 +136,7 @@ class BulldingController extends Controller
       $bulldingAll = $bullding->where(function($q) {
          $q->where('status', 1)
          ->where('type', 0);
-      })->orderBy('id', 'DESC')->paginate(3, ['*'], 'bullding');
+      })->orderBy('id', 'DESC')->paginate(6, ['*'], 'bullding');
 
       return view('website.bullding.index', compact('bulldingAll'));
    }
@@ -146,7 +146,7 @@ class BulldingController extends Controller
       $bulldingAll = $bullding->where(function($q) {
          $q->where('status', 1)
          ->where('type', 1);
-      })->orderBy('id', 'DESC')->paginate(3, ['*'], 'bullding');
+      })->orderBy('id', 'DESC')->paginate(6, ['*'], 'bullding');
 
       return view('website.bullding.index', compact('bulldingAll'));
    }
@@ -156,7 +156,7 @@ class BulldingController extends Controller
       $bulldingAll = $bullding->where(function($q) {
          $q->where('status', 1)
          ->where('type', 2);
-      })->orderBy('id', 'DESC')->paginate(3, ['*'], 'bullding');
+      })->orderBy('id', 'DESC')->paginate(6, ['*'], 'bullding');
 
       return view('website.bullding.index', compact('bulldingAll'));
    }
@@ -201,7 +201,7 @@ class BulldingController extends Controller
          }
       }
 
-      $bulldingAll = $query->orderBy('id', 'DESC')->paginate(3, ['*'], 'bullding');
+      $bulldingAll = $query->orderBy('id', 'DESC')->paginate(6, ['*'], 'bullding');
       return view('website.bullding.index', compact('bulldingAll', 'array'));
 
       /**
@@ -223,11 +223,18 @@ class BulldingController extends Controller
 
    /**
    * this function used to view the single bullding details
+   * @var $id
+   * @var $bullding
    * @return single view
    */
    public function singleShow($id, Bullding $bullding)
    {
+      // find the bullding by id
       $bulldingInfo = $bullding->findOrFail($id);
-      return view('website.bullding.singleBullding', compact('bulldingInfo'));
+      // same rent
+      $sameRent = $bullding->where('rent', $bulldingInfo->rent)->orderBy(DB::raw('RAND()'))->take(3)->get();
+      // same Type
+      $sameType = $bullding->where('rent', $bulldingInfo->type)->orderBy(DB::raw('RAND()'))->take(3)->get();
+      return view('website.bullding.singleBullding', compact('bulldingInfo', 'sameRent', 'sameType'));
    }
 }

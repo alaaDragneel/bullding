@@ -10,7 +10,13 @@
                               <p class="text-justify">{{ str_limit($bullding->small_dis, 70) }}</p>
                               <div class="productprice">
                                    <span class="pull-left">square: {{ $bullding->square }}</span>
-                                   <span class="pull-right">type: {{ rent()[$bullding->rent] }}</span>
+                                   <span class="pull-right">Operation: {{ rent()[$bullding->rent] }}</span>
+                                   <div class="clearfix"></div>
+                                   <span class="pull-right">Type: {{ type()[$bullding->type] }}</span>
+                                   <span class="pull-left">Rooms: {{ $bullding->rooms }}</span>
+                                   <div class="clearfix"></div>
+                                   <span class="pull-right">By: {{ $bullding->user->name }}</span>
+                                   <span class="pull-left">Place: {{ place()[$bullding->place] }}</span>
                                    <div class="clearfix"></div>
                                    <hr/>
                                    <div class="pull-right">
