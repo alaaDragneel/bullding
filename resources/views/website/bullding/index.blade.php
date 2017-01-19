@@ -32,10 +32,13 @@
                          <!-- END SIDEBAR USER TITLE -->
                          <!-- SIDEBAR MENU -->
                          <div class="profile-usermenu" style="padding: 10px;">
-                              {!! Form::open(['route' => 'search', 'action' => 'post']) !!}
+                              {!! Form::open(['route' => 'search', 'method' => 'get']) !!}
                               <ul class="nav">
                                    <li style="margin-bottom: 10px;">
-                                        {!! Form::text("price", null, ['class' => 'form-control', 'placeholder' => 'Bulding Price...']) !!}
+                                        {!! Form::text("price_from", null, ['class' => 'form-control', 'placeholder' => 'Bulding Price from...']) !!}
+                                   </li>
+                                   <li style="margin-bottom: 10px;">
+                                        {!! Form::text("price_to", null, ['class' => 'form-control', 'placeholder' => 'Bulding Price to...']) !!}
                                    </li>
                                    <li style="margin-bottom: 10px;">
                                         {!! Form::select("place", place(), null, ['class' => 'form-control', 'placeholder' => 'Rooms place']) !!}
@@ -120,7 +123,7 @@
                               @if (!empty($array))
                                    @foreach($array as $key => $value)
                                         <li>
-                                             <a href="#">{{ $key }} =>
+                                             <a href="{{ url('/bullding/Search?'. $key . '=' . $value) }}">{{ str_replace('_', ' ', $key) }} ->
                                                   @if ($key == 'type')
                                                        {{ type()[$value] }}
                                                   @elseif($key == 'rent')
@@ -139,7 +142,7 @@
                     <div class="profile-content">
                          @include('website.bullding.sharefile', ['bulldings' => $bulldingAll])
                          <div class="pagination col-md-6 col-md-offset-3">
-                              {!! $bulldingAll->render() !!}
+                              {!! $bulldingAll->appends(Request::query())->render() !!}
                          </div>
                     </div>
                </div>

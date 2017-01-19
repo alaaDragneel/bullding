@@ -164,6 +164,47 @@ class BulldingController extends Controller
    public function search(Request $request, Bullding $bullding)
    {
       /**
+      * @return laravel way
+      */
+      // get all the data except the submit and the _token
+      $requestAll = array_except($request, ['submit', '_token', 'bullding']);
+      // select
+      $query = DB::table('bulldings')->select('*');
+      // prepare the container as array
+      $array = [];
+      // count all the fields
+      $count = count($requestAll->toArray());
+      // make $i for advanced search trick
+      $i = 0;
+      // loop for the data
+      foreach($requestAll->all() as $key => $req) {
+         $i++;
+         // check
+         if ($req !== '') {
+            //check the price
+            if ($key == 'price_from' && $request->price_to === '') {
+               $query->where('price', '>=', $req);
+            } else if ($key == 'price_to' && $request->price_from === '') {
+               $query->where('price', '<=', $req);
+            } else {
+               if ($key !== 'price_from' && $key !== 'price_to') {
+                  // get and assign the data
+                  $query->where($key, '=', $req);
+               }
+            }
+            $array[$key] = $req;
+
+         } else if($count == $i && $request->price_from !== '' && $request->price_to !== ''){
+            // if the $i is the final thing in the loop it will get here.
+            $query->whereBetween('price', [$request->price_from, $request->price_to]);
+            $array[$key] = $req;
+         }
+      }
+
+      $bulldingAll = $query->orderBy('id', 'DESC')->paginate(3, ['*'], 'bullding');
+      return view('website.bullding.index', compact('bulldingAll', 'array'));
+
+      /**
       * @return native way
       *   // $requestAll = array_except($request, ['submit', '_token']);
       *   // $out = '';
@@ -178,21 +219,5 @@ class BulldingController extends Controller
       *   // $query = "SELECT * FROM bulldings" . $out;
       *   // $bulldingAll = DB::select($query);
       */
-
-      /**
-      * @return laravel way
-      */
-      $requestAll = array_except($request, ['submit', '_token']);
-      $query = DB::table('bulldings')->select('*');
-      $array = [];
-      foreach($requestAll->all() as $key => $req) {
-         if ($req !== '') {
-            $query->where($key, '=', $req);
-            $array[$key] = $req;
-         }
-      }
-
-      $bulldingAll = $query->orderBy('id', 'DESC')->paginate(3, ['*'], 'bullding');
-      return view('website.bullding.index', compact('bulldingAll', 'array'));
    }
 }
