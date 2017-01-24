@@ -44,8 +44,8 @@
 
 						<div class="form-group">
 			 	             <div class="col-md-9">
-			 	                 <button type="submit" class="btn btn-primary" name="submit">
-			 	                     <i class="fa fa-btn fa-save"></i> save the site Setting
+			 	                 <button type="submit" class="btn btn-primary" name="submit"  style="margin-top: 20px;">
+			 	                     <i class="fa fa-btn fa-save"></i>  save the site Setting
 			 	                 </button>
 			 	             </div>
 			 	         </div>

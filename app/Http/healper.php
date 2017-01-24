@@ -103,3 +103,14 @@ function place()
 	];
 	return $array;
 }
+
+function contact()
+{
+   $array = [
+      '1' => 'Like',
+		'2' => 'Suggestions',
+		'3' => 'problem',
+		'4' => 'More Iformation',
+	];
+	return $array;
+}
