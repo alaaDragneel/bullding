@@ -40,7 +40,7 @@ class BulldingController extends Controller
       if ($request->file('image')) {
          $file = image($request->image);
          if ($file == '') {
-            return redirect()->back()->with(['fail' => 'please Choose An Image 1440 * 1920']);
+            return redirect()->back()->with(['fail' => 'please Choose An Image 500 * 362']);
          }
          $image = 'src/images/bullding/' . $file;
       } else {
@@ -81,13 +81,13 @@ class BulldingController extends Controller
       $bulldingUpdate->fill(array_except($request->all(), 'image'))->save();
 
       if ($request->file('image')) {
-         $file = image($request->image);
+         $file = image($request->image, false, $bulldingUpdate->image);
          if ($file == '') {
             return redirect()->back()->with(['fail' => 'please Choose An Image 1440 * 1920']);
          }
+         $bulldingUpdate->fill(['image' => 'src/images/bullding/' . $file])->save();
       }
 
-      $bulldingUpdate->fill(['image' => 'src/images/bullding/'.$file])->save();
 
       return redirect()->back()->with(['success' => 'The Bullding Updated Successfully']);
    }

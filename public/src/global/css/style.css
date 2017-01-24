@@ -261,16 +261,17 @@ header h1 {
 .cd-slider {
   float: left;
 }
-.cd-slider li {
+/*.cd-slider li {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
-}
+}*/
 .cd-slider li img {
   display: block;
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
+  max-height: 225px;
 }
 .cd-slider li.selected {
   position: relative;

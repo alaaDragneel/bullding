@@ -33,9 +33,7 @@
                     <div class="profile-content">
                          <h1>{{ $bulldingInfo->name }}</h1>
                          <hr>
-                         <img src="{{ asset($bulldingInfo->image) }}" class="img-responsive">
-                         <br>
-                         <div class="btn-group" role="group">
+                         <div class="btn-group" role="group" style="margin-left: 8%;">
                               <a href="{{url('/bullding/Search?price='.$bulldingInfo->price) }}" class="btn btn-primary">
                                    price: {{ $bulldingInfo->price }}
                               </a>
@@ -55,6 +53,9 @@
                                    Bullding Type: {{ rent()[$bulldingInfo->rent] }}
                               </a>
                          </div>
+                         <br>
+                         <br>
+                         <img src="{{ asset($bulldingInfo->image) }}" class="img-responsive img-thumbnail" style="margin: auto; display: block;">
                          <p style="margin-top: 10px;">
                               {!! nl2br($bulldingInfo->decription) !!}
                          </p>
@@ -93,5 +94,6 @@
      </script>
 
      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg7lOBHY9GlZiMr20JdL7wrvbDd3lFqOk&callback=myMap" type="text/javascript"></script>
-
+     <!-- Go to www.addthis.com/dashboard to customize your tools -->
+     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58877c76fc1175d9"></script>
 @endsection

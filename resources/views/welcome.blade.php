@@ -20,7 +20,7 @@
 @endsection
 
 @section('content')
-     <div class="banner text-center" style="background: url({{ getSetting('mainSlider') }}); background-size: cover;">
+     <div class="banner text-center" style="background: url({{ getSetting('mainSlider') }}); background-size: cover; background-attachment: fixed;">
        <div class="container">
          <div class="banner-info">
            <h1>Welcome To the Biggest {{ getSetting() }}</h1>

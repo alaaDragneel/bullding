@@ -23,12 +23,9 @@ class siteSettingController extends Controller
           if ($siteSettingUpdate->type !== 3) {
              $siteSettingUpdate->fill(['value' => $req])->save();
           } else {
-             $file = image($request->mainSlider);
-            if ($file == '') {
-               return redirect()->back()->with(['fail' => 'please Choose An Image 1440 * 1920']);
-            } else {
-               $siteSettingUpdate->fill(['value' => 'src/images/bullding/'.$file])->save();
-            }
+             $file = image($request->mainSlider, true, $siteSettingUpdate->value);
+
+             $siteSettingUpdate->fill(['value' => 'src/images/bullding/cover/'.$file])->save();
           }
      }
      return redirect()->back()->with(['success' => 'the data upated successfully']);

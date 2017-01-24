@@ -10,18 +10,40 @@ function avatar()
    return 'src/images/bullding/avatar/avatar.jpg';
 }
 
-function image($request, $width = '1440', $height = '1920')
+function image($request, $slider = false, $deleteFileWithName = '', $width = '500', $height = '362')
 {
    $dim = getimagesize($request);
-   if ($dim[0] > $width || $dim[1] > $height) {
-      return $fileName = '';
-   }
    $extension = $request->getClientOriginalExtension();
    $sha1 = sha1($request->getClientOriginalName());
    $fileName = date("y-m-d-h-i-s") . "_" . $sha1 . "." .$extension;
+   // for cover
+   if ($slider === true) {
+      $path = public_path('src/images/bullding/cover/');
+      $request->move($path, $fileName);
+      if ($deleteFileWithName != '') {
+         //check if file exists
+         if (file_exists($deleteFileWithName)) {
+            \Illuminate\Support\Facades\File::delete($deleteFileWithName);
+         }
+      }
+      return $fileName;
+   }
+   // for bullding
    $path = public_path('src/images/bullding/');
    $request->move($path, $fileName);
+   if ($width == '500' && $height == '362') {
+      $file = 'src/images/bullding/'. $fileName;
+      \Intervention\Image\Facades\Image::make($path . $fileName)->resize('500', '362')->save($file, 100);
+   }
 
+   if ($deleteFileWithName != '') {
+      //check if file exists
+      if (file_exists($deleteFileWithName)) {
+         if ($deleteFileWithName !== avatar()) {
+            \Illuminate\Support\Facades\File::delete($deleteFileWithName);
+         }
+      }
+   }
    return $fileName;
 }
 

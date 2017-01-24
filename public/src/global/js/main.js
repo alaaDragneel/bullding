@@ -11,13 +11,13 @@ jQuery(document).ready(function($){
       var root = urlHome(1); // this function in the welcome file that return the root link
       $.get(url, {id: id}, function(res){
          var json = JSON.parse(res);
-         $('.title').html(json.name);
-   
+
          $('.imgBox').attr('src', publicHome(json.image));
+         $('.title').html(json.name);
          $('.priceBox')
          .html(json.price)
-         .attr('href', root + '/bullding/singleShow/' + json.id);
-         $('.moreBox').attr('href', root + '/bullding/Search?price=' + json.price);
+         .attr('href', root + '/bullding/Search?price=' + json.price);
+         $('.moreBox').attr('href', root + '/bullding/singleShow/' + json.id);
          $('.disBox').html(json.small_dis);
       });
 		var selectedImage = $(this).parent('.cd-item').children('img'),
