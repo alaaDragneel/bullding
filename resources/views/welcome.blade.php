@@ -110,8 +110,10 @@
      {
           if (root == 0) {
                return '{{ route('show.ajax.bullding') }}';
-          } else {
+          } else if(root == 1) {
                return '{{ Request::root() }}';
+          } else {
+               return '{{ asset('src/images/item-1.jpg') }}';
           }
      }
 

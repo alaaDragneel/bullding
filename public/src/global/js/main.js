@@ -9,9 +9,9 @@ jQuery(document).ready(function($){
       var id = $(this).data('id');
       var url = urlHome(); // this function in the welcome file that return the root link
       var root = urlHome(1); // this function in the welcome file that return the root link
+      imgDefault = urlHome(2); // this function in the welcome file that return the defualt image link
       $.get(url, {id: id}, function(res){
          var json = JSON.parse(res);
-
          $('.imgBox').attr('src', publicHome(json.image));
          $('.title').html(json.name);
          $('.priceBox')
@@ -90,6 +90,8 @@ jQuery(document).ready(function($){
 		} else {
 			closeNoAnimation(selectedImage, finalWidth, maxQuickWidth);
 		}
+
+      $('.imgBox').attr('src', imgDefault);
 	}
 
 	function animateQuickView(image, finalWidth, maxQuickWidth, animationType) {

@@ -189,17 +189,17 @@ class BulldingController extends Controller
       * @return laravel way
       */
       // get all the data except the submit and the _token
-      $requestAll = array_except($request, ['submit', '_token', 'bullding']);
+      $requestAll = array_except($request->toArray(), ['submit', '_token', 'bullding']);
       // select
       $query = DB::table('bulldings')->select('*');
       // prepare the container as array
       $array = [];
       // count all the fields
-      $count = count($requestAll->toArray());
+      $count = count($requestAll);
       // make $i for advanced search trick
       $i = 0;
       // loop for the data
-      foreach($requestAll->all() as $key => $req) {
+      foreach($requestAll as $key => $req) {
          $i++;
          // check
          if ($req !== '') {

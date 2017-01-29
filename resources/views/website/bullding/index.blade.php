@@ -48,7 +48,7 @@
                     <div class="profile-content">
                          @include('website.bullding.sharefile', ['bulldings' => $bulldingAll])
                          <div class="pagination col-md-6 col-md-offset-3">
-                              {!! $bulldingAll->appends(Request::query())->render() !!}
+                              {{ $bulldingAll->appends(Request::query())->render() }}
                          </div>
                     </div>
                </div>

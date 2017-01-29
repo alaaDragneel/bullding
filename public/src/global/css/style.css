@@ -269,9 +269,8 @@ header h1 {
 }*/
 .cd-slider li img {
   display: block;
-  width: 100%;
-  max-width: 300px;
-  max-height: 225px;
+  width: 257px;
+  height: 280px;
 }
 .cd-slider li.selected {
   position: relative;
@@ -392,6 +391,7 @@ header h1 {
   line-height: 1.6;
   margin: 1em 0;
   color: #67919c;
+  word-wrap: break-word;
 }
 .cd-item-info .cd-item-action li {
   display: inline-block;
