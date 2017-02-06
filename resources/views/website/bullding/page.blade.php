@@ -1,4 +1,52 @@
 <div class="col-md-3">
+     @if (Auth::check())
+     <div class="profile-sidebar">
+          <!-- SIDEBAR USER TITLE -->
+          <div class="profile-usertitle">
+               <div class="profile-usertitle-name">
+                    <h2>Member Options</h2>
+               </div>
+          </div>
+          <!-- END SIDEBAR USER TITLE -->
+          <!-- SIDEBAR MENU -->
+          <div class="profile-usermenu">
+               <ul class="nav">
+                    <li class="{{ Request::is('user/editSetting') ? 'active' : '' }}">
+                         <a href="{{ route('user.editSetting') }}">
+                              <i class="fa fa-edit"></i>
+                              Edit the personal information
+                         </a>
+                    </li>
+                    <li class="{{ Request::is('user/show/bullding') ? 'active' : '' }}">
+                         <a href="{{ route('user.show.bullding') }}">
+                              <i class="fa fa-building"></i>
+                              My Bullding
+                         </a>
+                    </li>
+                    <li class="{{ Request::is('user/show/bullding/approved') ? 'active' : '' }}">
+                         <a href="{{ route('user.show.bullding.approved') }}">
+                              <i class="fa fa-check"></i>
+                              My Approved Bullding
+                         </a>
+                    </li>
+                    <li class="{{ Request::is('user/show/bullding/unappreved') ? 'active' : '' }}">
+                         <a href="{{ route('user.show.bullding.unappreved') }}">
+                              <i class="fa fa-clock-o"></i>
+                              My UnApproved Bullding
+                         </a>
+                    </li>
+                    <li class="{{ Request::is('users/bullding/create') ? 'active' : '' }}">
+                         <a href="{{ route('users.create.bullding') }}">
+                              <i class="fa fa-plus"></i>
+                              Add Bullding
+                         </a>
+                    </li>
+               </ul>
+          </div>
+          <!-- END MENU -->
+     </div>
+     <br>
+     @endif
      <div class="profile-sidebar">
           <!-- SIDEBAR USER TITLE -->
           <div class="profile-usertitle">

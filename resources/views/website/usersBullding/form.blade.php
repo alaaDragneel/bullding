@@ -1,8 +1,8 @@
 <div class="box-body">
 	  <div class="panel panel-primary">
-		  <div class="panel-heading">Create</div>
+		  <div class="panel-heading">Bullding Create</div>
 		  <div class="panel-body">
-			<form class="form-horizontal" role="form" method="POST" action="{{ route('admin.bulldings.store') }}" enctype="multipart/form-data">
+			<form class="form-horizontal" role="form" method="POST" action="{{ route('users.store.bullding') }}" enctype="multipart/form-data">
 	         {{ csrf_field() }}
 		    {{-- bullding_name --}}
 	         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -86,19 +86,6 @@
 	                 @endif
 	             </div>
 	         </div>
-		    {{-- bullding_status --}}
-		    <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-			   <label for="status" class="col-md-4 control-label">bullding status</label>
-
-			   <div class="col-md-6">
-				  {!! Form::select('status', status(), null, ['class' => 'form-control', 'id' => 'status']) !!}
-				  @if ($errors->has('status'))
-					 <span class="help-block">
-						<strong>{{ $errors->first('status') }}</strong>
-					 </span>
-				  @endif
-			   </div>
-		    </div>
 		    {{-- bullding_plcae --}}
               <div class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
 			   <label for="place" class="col-md-4 control-label">bullding place</label>
@@ -124,22 +111,6 @@
 	                         <strong>{{ $errors->first('meta') }}</strong>
 	                     </span>
 	                 @endif
-	             </div>
-	         </div>
-		    {{-- bullding_small_disc --}}
-		    <div class="form-group{{ $errors->has('small_dis') ? ' has-error' : '' }}">
-	             <label for="small_dis" class="col-md-4 control-label">bullding  search engins discription</label>
-
-	             <div class="col-md-6">
-	                 <textarea rows="4" id="small_dis" class="form-control" name="small_dis">{{ old('small_dis') }}</textarea>
-
-	                 @if ($errors->has('small_dis'))
-	                     <span class="help-block">
-	                         <strong>{{ $errors->first('small_dis') }}</strong>
-	                     </span>
-	                 @endif
-				  <br>
-				  <div class="alert alert-warning">Cannot enter more Than 160 Characters by google calibration</div>
 	             </div>
 	         </div>
 		    {{-- bullding_langtuide --}}

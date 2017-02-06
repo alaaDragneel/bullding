@@ -6,7 +6,6 @@
 
 @section('styles')
      {!! Html::style('src/global/bulldingAll.css') !!}
-     {!! Html::style('src/global/select2.min.css') !!}
      <style>
      hr {
           margin: 10px 0;
@@ -54,11 +53,4 @@
                </div>
           </div>
      </div>
-@endsection
-
-@section('footer')
-     {!! Html::script('src/global/select2.min.js') !!}
-     <script type="text/javascript">
-          $('select[name=place]').select2();
-     </script>
 @endsection

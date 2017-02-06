@@ -16,11 +16,18 @@
                                    <div class="clearfix"></div>
                                    <hr/>
                                    <div class="pull-right">
-                                        <a href="{{ route('show.single.bullding', ['id' => $bullding->id]) }}" class="btn btn-primary btm-sm" role="button">Show Details
-                                             <span class="glyphicon glyphicon-info-sign"></span>
-                                        </a>
+                                        @if ($bullding->status == 0)
+                                             <span class="btn btn-danger btn-sm"> UnApproved
+                                                  <i class="fa fa-clock-o"></i>
+                                             </span>
+                                        @else
+                                             <a href="{{ route('show.single.bullding', ['id' => $bullding->id]) }}" class="btn btn-primary btn-sm" role="button">Show Details
+                                                  <span class="glyphicon glyphicon-info-sign"></span>
+                                             </a>
+                                        @endif
                                    </div>
-                                   <div class="pricetext">{{ $bullding->price }}</div></div>
+                                   <div class="pricetext">{{ $bullding->price }}</div>
+                              </div>
                               </div>
                          </div>
                     @endforeach

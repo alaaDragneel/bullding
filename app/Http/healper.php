@@ -1,15 +1,17 @@
 <?php
-
+// site setting
 function getSetting($settingName = 'siteName')
 {
 	return \App\siteSetting::where('nameSetting', $settingName)->get()[0]->value;
 }
 
+// image avatar
 function avatar()
 {
    return 'src/images/bullding/avatar/avatar.jpg';
 }
 
+// the image dynamic function
 function image($request, $slider = false, $deleteFileWithName = '', $width = '500', $height = '362')
 {
    $dim = getimagesize($request);
@@ -47,11 +49,13 @@ function image($request, $slider = false, $deleteFileWithName = '', $width = '50
    return $fileName;
 }
 
+// check image
 function checkImage($bullding)
 {
    return $bullding !== '' ? $bullding : avatar();
 }
 
+// the type function for bullding
 function type()
 {
 	$array = [
@@ -62,6 +66,7 @@ function type()
 	return $array;
 }
 
+// the operation type for the bullding
 function rent()
 {
 	$array = [
@@ -71,7 +76,7 @@ function rent()
 	return $array;
 }
 
-
+// the status function
 function status()
 {
 	$array = [
@@ -81,6 +86,7 @@ function status()
 	return $array;
 }
 
+// theromms function
 function roomsNu()
 {
    $array = [];
@@ -92,6 +98,7 @@ function roomsNu()
    return $array;
 }
 
+// the arae function
 function place()
 {
    $array = [
@@ -104,6 +111,7 @@ function place()
 	return $array;
 }
 
+//the contact type
 function contact()
 {
    $array = [
@@ -113,4 +121,16 @@ function contact()
 		'4' => 'More Iformation',
 	];
 	return $array;
+}
+
+// the unRead message function
+function unReadMessage()
+{
+   return \App\contact::where('view', 0)->get();
+}
+
+// the Count unRead message function
+function countUnReadMessage()
+{
+   return \App\contact::where('view', 0)->count();
 }

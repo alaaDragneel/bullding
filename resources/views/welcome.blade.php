@@ -60,7 +60,11 @@
                      {!! Form::close() !!}
                 <!-- Advanced Search -->
            </p>
-           <a class="btn btn-success" href="{{ route('show.all.bullding') }}">See More</a> </div>
+           @if (Auth::check())
+                <a class="btn btn-danger" href="{{ route('users.create.bullding') }}">Add Free Bullding</a> </div>
+           @else
+                <a class="btn btn-info" href="{{ route('show.all.bullding') }}">See More</a> </div>
+           @endif
        </div>
      </div>
      <div class="main">

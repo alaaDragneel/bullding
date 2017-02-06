@@ -33,7 +33,7 @@
                     <div class="profile-content">
                          <h1>{{ $bulldingInfo->name }}</h1>
                          <hr>
-                         <div class="btn-group" role="group" style="margin-left: 8%;">
+                         <div class="btn-group" role="group" style="margin-left: 3%;">
                               <a href="{{url('/bullding/Search?price='.$bulldingInfo->price) }}" class="btn btn-primary">
                                    price: {{ $bulldingInfo->price }}
                               </a>

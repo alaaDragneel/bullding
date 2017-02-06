@@ -9,7 +9,7 @@
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="{{asset('src/backend/bootstrap/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  {!! Html::style('src/frontend/css/font-awesome.min.css') !!}
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
@@ -186,73 +186,29 @@
 		          <li class="dropdown tasks-menu">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		              <i class="fa fa-flag-o"></i>
-		              <span class="label label-danger">9</span>
+		              <span class="label label-danger">{{ countUnReadMessage() }}</span>
 		            </a>
 		            <ul class="dropdown-menu">
-		              <li class="header">You have 9 tasks</li>
+		              <li class="header">You have {{ countUnReadMessage() }} tasks</li>
 		              <li>
 		                <!-- inner menu: contains the actual data -->
 		                <ul class="menu">
-		                  <li><!-- Task item -->
-		                    <a href="#">
-		                      <h3>
-		                        Design some buttons
-		                        <small class="pull-right">20%</small>
-		                      </h3>
-		                      <div class="progress xs">
-		                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-		                          <span class="sr-only">20% Complete</span>
-		                        </div>
-		                      </div>
-		                    </a>
-		                  </li>
-		                  <!-- end task item -->
-		                  <li><!-- Task item -->
-		                    <a href="#">
-		                      <h3>
-		                        Create a nice theme
-		                        <small class="pull-right">40%</small>
-		                      </h3>
-		                      <div class="progress xs">
-		                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-		                          <span class="sr-only">40% Complete</span>
-		                        </div>
-		                      </div>
-		                    </a>
-		                  </li>
-		                  <!-- end task item -->
-		                  <li><!-- Task item -->
-		                    <a href="#">
-		                      <h3>
-		                        Some task I need to do
-		                        <small class="pull-right">60%</small>
-		                      </h3>
-		                      <div class="progress xs">
-		                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-		                          <span class="sr-only">60% Complete</span>
-		                        </div>
-		                      </div>
-		                    </a>
-		                  </li>
-		                  <!-- end task item -->
-		                  <li><!-- Task item -->
-		                    <a href="#">
-		                      <h3>
-		                        Make beautiful transitions
-		                        <small class="pull-right">80%</small>
-		                      </h3>
-		                      <div class="progress xs">
-		                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-		                          <span class="sr-only">80% Complete</span>
-		                        </div>
-		                      </div>
-		                    </a>
-		                  </li>
+                               <!-- Task item -->
+                               @foreach (unReadMessage() as $valueMessage)
+                                    <li>
+                                         <a href="{{ route('admin.contacts.edit', ['id' => $valueMessage->id]) }}">
+                                              <h3>
+                                                   {{ $valueMessage->contactName }}
+                                                   <small class="pull-right">{{ $valueMessage->created_at }}</small>
+                                              </h3>
+                                         </a>
+                                    </li>
+                               @endforeach
 		                  <!-- end task item -->
 		                </ul>
 		              </li>
 		              <li class="footer">
-		                <a href="#">View all tasks</a>
+		                <a href="{{ route('admin.contacts.index') }}">View all tasks</a>
 		              </li>
 		            </ul>
 		          </li>

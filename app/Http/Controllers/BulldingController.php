@@ -253,6 +253,9 @@ class BulldingController extends Controller
    {
       // find the bullding by id
       $bulldingInfo = $bullding->findOrFail($id);
+      if ($bulldingInfo->status == 0) {
+         return view('website.bullding.noPermation', compact('bulldingInfo'));
+      }
       // same rent
       $sameRent = $bullding->where('rent', $bulldingInfo->rent)->orderBy(DB::raw('RAND()'))->take(3)->get();
       // same Type
@@ -265,9 +268,95 @@ class BulldingController extends Controller
    * @var Bullding $bullding
    * @return view
    */
+
    public function ajaxInfo(Request $request, Bullding $bullding)
    {
       // find the bullding by id
       return $bulldingInfo = $bullding->findOrFail($request->id)->toJson();
    }
+
+   /**
+   * this function used to view the users add bullding
+   * @return view
+   */
+
+   public function usersAddView()
+   {
+      return view('website.usersBullding.usersAdd');
+   }
+
+   /**
+   * Store a newly created resource in storage For User.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+
+   public function usersStore(BulldingRequest $request, Bullding $bullding)
+   {
+      if ($request->file('image')) {
+         $file = image($request->image);
+         if ($file == '') {
+            return redirect()->back()->with(['fail' => 'please Choose An Image 500 * 362']);
+         }
+         $image = 'src/images/bullding/' . $file;
+      } else {
+         $image = avatar();
+      }
+      $user = Auth::user();
+      $data = [
+         'name'          => $request->name,
+         'price'         => $request->price,
+         'rent'          => $request->rent,
+         'square'        => $request->square,
+         'type'          => $request->type,
+         'small_dis'     => strip_tags(str_limit($request->decription, 160)),
+         'meta'          => $request->meta,
+         'langtuide'     => $request->langtuide,
+         'latitiute'     => $request->latitiute,
+         'decription'    => $request->decription,
+         'rooms'         => $request->rooms,
+         'place'         => $request->place,
+         'image'         => $image,
+         'user_id'       => $user->id,
+      ];
+      $bullding->create($data);
+
+      return view('website.usersBullding.done');
+
+   }
+
+   /**
+   * get the users bullding
+   *
+   * @return view
+   */
+   public function usersBullding()
+   {
+      $bulldingAll = Auth::user()->buldings()->orderBy('id', 'DESC')->paginate(6, ['*'], 'bullding');
+      return view('website.usersBullding.showUsersBulding', compact('bulldingAll'));
+   }
+
+   /**
+   * get the users bullding
+   *
+   * @return view
+   */
+   public function usersApprovedBullding()
+   {
+      $bulldingAll = Auth::user()->buldings()->where('status', 1)->orderBy('id', 'DESC')->paginate(6, ['*'], 'bullding');
+      return view('website.usersBullding.showUsersBulding', compact('bulldingAll'));
+   }
+
+   /**
+   * get the users bullding
+   *
+   * @return view
+   */
+   public function usersUnApprovedBullding()
+   {
+      $bulldingAll = Auth::user()->buldings()->where('status', 0)->orderBy('id', 'DESC')->paginate(6, ['*'], 'bullding');
+      return view('website.usersBullding.showUsersBulding', compact('bulldingAll'));
+   }
+
 }

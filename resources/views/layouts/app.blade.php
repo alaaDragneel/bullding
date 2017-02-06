@@ -9,6 +9,7 @@
      {!! Html::style('src/frontend/css/flexslider.css') !!}
      {!! Html::style('src/frontend/css/style.css') !!}
      {!! Html::style('src/global/sweetalert.css') !!}
+     {!! Html::style('src/global/select2.min.css') !!}
      <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet' type='text/css'>
     @yield('styles')
 
@@ -20,7 +21,7 @@
               <div class="menu"> <a class="toggleMenu" href="#">{!! Html::image('src/frontend/images/nav_icon.png') !!}</a>
                 <ul class="nav" id="nav">
                   <li  {{ Request::is('home') ? 'class=current' : '' }}><a href="{{ route('home') }}">Home</a></li>
-                  <li  {{ Request::is('bullding') ? 'class=current' : '' }}><a href="{{ route('show.all.bullding') }}">Bullding</a></li>
+                  <li  {{ Request::is('bullding*') ? 'class=current' : '' }}><a href="{{ route('show.all.bullding') }}">Bullding</a></li>
                   <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                          Rent <span class="caret"></span>
@@ -43,7 +44,7 @@
                          @endforeach
                       </ul>
                   </li>
-                  <li><a href="{{ route('show.contact') }}">Contact Us</a></li>
+                  <li {{ Request::is('contact*') ? 'class=current' : '' }}><a href="{{ route('show.contact') }}">Contact Us</a></li>
                   <!-- Authentication Links -->
                   @if (Auth::guest())
                       <li><a href="{{ url('/login') }}">Login</a></li>
@@ -55,7 +56,21 @@
                           </a>
 
                           <ul class="dropdown-menu" role="menu">
-                              <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                              <li><a href="{{ route('user.editSetting') }}"><i class="fa fa-btn fa-edit"></i> Profile Setting</a></li>
+                              <li>
+                                   <a href="{{ route('user.show.bullding') }}"><i class="fa fa-btn fa-building"></i> My Bullding</a>
+                              </li>
+                              <li>
+                                   <a href="{{ route('user.show.bullding.approved') }}"><i class="fa fa-btn fa-check"></i> My Approved Bullding</a>
+                              </li>
+                              <li>
+                                   <a href="{{ route('user.show.bullding.unappreved') }}"><i class="fa fa-btn fa-clock-o"></i> My UnApproved Bullding
+                                   </a>
+                              </li>
+                              <li>
+                                   <a href="{{ route('users.create.bullding') }}"><i class="fa fa-btn fa-plus"></i> Add Bullding</a>
+                              </li>
+                              <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
                           </ul>
                       </li>
                   @endif
@@ -78,7 +93,7 @@
                          <a class="fa fa-google-plus social-icon" href="{{ getSetting('google') }}"></a>
                     </div>
                     <div class="copy">
-                         <p>Copyright &copy; 2015 Company Name. Design by <a href="http://www.templategarden.com" rel="nofollow">TemplateGarden</a></p>
+                         <p>Copyright &copy; {{ date('Y') }} <a href="{{ getSetting('facebook') }}" rel="nofollow">{{ getSetting('copyright') }}</a></p>
                     </div>
                </div>
           </div>
@@ -92,6 +107,11 @@
     {!! Html::script('src/frontend/js/responsive-nav.js') !!}
     <!-- Custum folder -->
     {!! Html::script('src/global/sweetalert.min.js') !!}
+    {!! Html::script('src/global/select2.min.js') !!}
+    <script type="text/javascript">
+         $('select[name=place]').select2();
+    </script>
+
     <script type="application/x-javascript">
           addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
      </script>
