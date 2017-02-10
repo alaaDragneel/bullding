@@ -46,6 +46,13 @@
                          <i class="fa fa-envelope"></i> <span>Site Message</span>
                     </a>
                </li>
+               {{-- Charts Analisys --}}
+               <li class="header" ><i class="fa fa-bar-chart"></i> Bullding statistics</li>
+               <li class="{{ Request::is('admin/contacts*') ? 'active' : '' }} treeview">
+                    <a href="{{ route('admin.contacts.index') }}">
+                         <i class="fa fa-bar-chart"></i> <span>Bullding statistics</span>
+                    </a>
+               </li>
                {{-- users --}}
                <li class="header" ><i class="fa fa-users"></i> Users</li>
                <li class="{{ Request::is('admin/user*') ? 'active' : '' }} treeview">

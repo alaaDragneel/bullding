@@ -63,6 +63,8 @@ class BulldingController extends Controller
          'rooms'         => $request->rooms,
          'place'         => $request->place,
          'image'         => $image,
+         'month'         => date('m'),
+         'year'         => date('Y'),
          'user_id'       => $user->id,
       ];
       $bullding->create($data);
@@ -332,6 +334,8 @@ class BulldingController extends Controller
          'rooms'         => $request->rooms,
          'place'         => $request->place,
          'image'         => $image,
+         'month'         => date('m'),
+         'year'         => date('Y'),
          'user_id'       => $user->id,
       ];
       $bullding->create($data);
