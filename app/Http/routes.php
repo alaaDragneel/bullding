@@ -35,6 +35,16 @@ Route::group(['middleware' => 'admin'], function () {
          'as' => 'dashboard'
       ]);
 
+      Route::get('/bullding/year/statistics', [
+         'uses' => 'AdminController@showBulldingStatistics',
+         'as' => 'show.bullding.statistics'
+      ]);
+
+      Route::post('/bullding/year/statistics', [
+         'uses' => 'AdminController@showBulldingshowThisYear',
+         'as' => 'show.bullding.year'
+      ]);
+
       Route::resource('/users', 'UsersController', [
          'names' => [
             'index' => 'users',

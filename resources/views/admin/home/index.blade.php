@@ -444,9 +444,14 @@ var salesChartData = {
                pointHighlightFill: "#fff",
                pointHighlightStroke: "rgba(60,141,188,1)",
                data: [
-                    @foreach ($chartBuillding as $chart)
-                         {{ $chart->counting }},
+                    @foreach ($new as $chart)
+                    @if (is_array($chart))
+                         {{ $chart['counting'] }},
+                    @else
+                         {{ $chart }},
+                    @endif
                     @endforeach
+
                ]
           }
      ]
