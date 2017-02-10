@@ -302,12 +302,14 @@
 <script src="{{asset('src/backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 <!-- Slimscroll -->
 <script src="{{asset('src/backend/plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
+<!-- ChartJS 1.0.1 -->
+<script src="{{ asset('src/backend/plugins/chartjs/Chart.min.js') }}"></script>
 <!-- FastClick -->
 <script src="{{asset('src/backend/plugins/fastclick/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('src/backend/dist/js/app.min.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('src/backend/dist/js/pages/dashboard.js')}}"></script>
+<script src="{{asset('src/backend/dist/js/pages/dashboard2.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('src/backend/dist/js/demo.js')}}"></script>
 <!-- Custum folder -->

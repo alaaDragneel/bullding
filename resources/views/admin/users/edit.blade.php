@@ -73,7 +73,7 @@
                                                                  <td><a href="{{ route('admin.bulldings.changeStatus', ['id' => $all->id, 'status' => $status]) }}" class="btn btn-primary btn-xs">{{ $statusBtn }}</a></td>
                                                                  <td><span class="label label-warning">{{ $all->created_at }}</span></td>
                                                                  <td>
-                                                                      <img src="{{ asset(checkImage($all->image)) }}" class="img-responsive img-thumbnail" style="width: 70%; height: 70%;" >
+                                                                      <img src="{{ asset(checkImage($all->image)) }}" class="img-responsive img-thumbnail" style="width: 100%; height: auto;" >
                                                                  </td>
                                                             </tr>
                                                        @endforeach
@@ -129,7 +129,7 @@
                                                                       <td><a href="{{ route('admin.bulldings.changeStatus', ['id' => $enable->id, 'status' => 0]) }}" class="btn btn-primary btn-xs">UnApprove</a></td>
                                                                       <td><span class="label label-warning">{{ $enable->created_at }}</span></td>
                                                                       <td>
-                                                                           <img src="{{ asset(checkImage($enable->image)) }}" class="img-responsive img-thumbnail" style="width: 70%; height: 70%;" >
+                                                                           <img src="{{ asset(checkImage($enable->image)) }}" class="img-responsive img-thumbnail" style="width: 100%; height: auto;" >
                                                                       </td>
                                                                  </tr>
                                                             @endforeach
@@ -184,7 +184,7 @@
                                                                  <td><a href="{{ route('admin.bulldings.changeStatus', ['id' => $waiting->id, 'status' => 1]) }}" class="btn btn-primary btn-xs">Approve</a></td>
                                                                  <td><span class="label label-warning">{{ $waiting->created_at }}</span></td>
                                                                  <td>
-                                                                      <img src="{{ asset(checkImage($waiting->image)) }}" class="img-responsive img-thumbnail" style="width: 70%; height: 70%;" >
+                                                                      <img src="{{ asset(checkImage($waiting->image)) }}" class="img-responsive img-thumbnail" style="width: 100%; height: auto;" >
                                                                  </td>
                                                             </tr>
                                                        @endforeach
