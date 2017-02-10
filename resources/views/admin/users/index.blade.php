@@ -37,6 +37,7 @@
 									<th >Name</th>
 									<th >Email</th>
 									<th >User Type</th>
+									<th >My BUllding</th>
 									<th >Created At</th>
 									<th >Actions</th>
 								</tr>
@@ -50,6 +51,7 @@
 									<th >Name</th>
 									<th >Email</th>
 									<th >User Type</th>
+                                             <th >My BUllding</th>
 
 									<th colspan="2">More Information</th>
 
@@ -101,6 +103,7 @@ var table = $('#myTableData').DataTable({
 	{data: 'name', name: 'name'},
 	{data: 'email', name: 'email'},
 	{data: 'userType', name: 'userType'},
+	{data: 'myBullding', name: 'myBullding'},
 	{data: 'created_at', name: 'created_at'},
 	{data: 'actions', name: ''},
  ],

@@ -11,6 +11,12 @@ function avatar()
    return 'src/images/bullding/avatar/avatar.jpg';
 }
 
+// user type
+function userType($Type)
+{
+   return $Type === 0 ? 'user' : 'admin';
+}
+
 // the image dynamic function
 function image($request, $slider = false, $deleteFileWithName = '', $width = '500', $height = '362')
 {
@@ -133,4 +139,23 @@ function unReadMessage()
 function countUnReadMessage()
 {
    return \App\contact::where('view', 0)->count();
+}
+
+// bullding count for user function
+function bulldingCountForUser($userId, $countAll = false, $status = null)
+{
+   if ($countAll === false) {
+      return \App\Bullding::where(function ($q) use($userId, $status) {
+         $q ->where('status', $status)
+         ->where('user_id', $userId);
+      })->count();
+   } else {
+      return Auth::user()->buldings()->count();
+   }
+}
+
+// get the un approved bullding
+function countAllBulldingAppendToStatus($status)
+{
+   return \App\Bullding::where('status', $status)->count();
 }

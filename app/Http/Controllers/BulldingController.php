@@ -14,9 +14,10 @@ use DB;
 
 class BulldingController extends Controller
 {
-   public function index()
+   public function index(Request $request)
    {
-      return view('admin.bullding.index');
+      $id = $request->id !== null ? '?userId='.$request->id : null;
+      return view('admin.bullding.index', compact('id'));
    }
 
    /**
@@ -72,7 +73,8 @@ class BulldingController extends Controller
    public function edit($id)
    {
       $bullding = Bullding::findOrFail($id);
-      return view('admin.bullding.edit', compact('bullding'));
+      $user = $bullding->user()->first();
+      return view('admin.bullding.edit', compact('bullding', 'user'));
    }
 
    public function update(BulldingRequest $request, $id)
@@ -99,9 +101,13 @@ class BulldingController extends Controller
       return redirect()->route('admin.bulldings.index')->with(['success' => 'The Bullding deleted Successfully']);
    }
 
-   public function anyData(Bullding $bullding)
+   public function anyData(Request $request, Bullding $bullding)
    {
-      $bulldings = $bullding->all();
+      if ($request->userId) {
+         $bulldings = $bullding->where('user_id', $request->userId)->get();
+      } else {
+         $bulldings = $bullding->all();
+      }
 
       $data = DataTables::of($bulldings)
 
@@ -254,12 +260,20 @@ class BulldingController extends Controller
       // find the bullding by id
       $bulldingInfo = $bullding->findOrFail($id);
       if ($bulldingInfo->status == 0) {
-         return view('website.bullding.noPermation', compact('bulldingInfo'));
+         $messageTitle = 'This Bullding Waiting Admin Permetion';
+         $messageBody = "Building $bulldingInfo->name Is Found But Waiting Admin Permetion This Building Will Publish In Maximum 24 Hours";
+         return view('website.bullding.noPermation', compact('bulldingInfo', 'messageTitle', 'messageBody'));
       }
       // same rent
-      $sameRent = $bullding->where('rent', $bulldingInfo->rent)->orderBy(DB::raw('RAND()'))->take(3)->get();
+      $sameRent = $bullding->where(function ($q) use($bulldingInfo) {
+         $q->where('rent', $bulldingInfo->rent)
+            ->where('status', 1);
+      })->orderBy(DB::raw('RAND()'))->take(3)->get();
       // same Type
-      $sameType = $bullding->where('rent', $bulldingInfo->type)->orderBy(DB::raw('RAND()'))->take(3)->get();
+      $sameType = $bullding->where(function ($q) use($bulldingInfo) {
+         $q->where('type', $bulldingInfo->type)
+            ->where('status', 1);
+      })->orderBy(DB::raw('RAND()'))->take(3)->get();
       return view('website.bullding.singleBullding', compact('bulldingInfo', 'sameRent', 'sameType'));
    }
 
@@ -359,4 +373,63 @@ class BulldingController extends Controller
       return view('website.usersBullding.showUsersBulding', compact('bulldingAll'));
    }
 
+   /**
+   * get the users bullding edit view
+   *
+   * @return view
+   */
+   public function usersEditUnApprovedBullding($id, Bullding $bullding)
+   {
+      // get the user
+      $user = Auth::user();
+      // find the bullding by id
+      $bulldingInfo = $bullding->findOrFail($id);
+      if ($user->id !== $bulldingInfo->user_id) {
+         $messageTitle = 'UnAuthrized';
+         $messageBody = "You Are UnAuthrized To Access To the Bullding $bulldingInfo->name";
+         return view('website.bullding.noPermation', compact('bulldingInfo', 'messageTitle', 'messageBody'));
+      } elseif ($bulldingInfo->status == 1) {
+         $messageTitle = 'Alreay Published';
+         $messageBody = "This Bullding $bulldingInfo->name Aready Published And You Can't Edit It Now If You Want To Edit It Please Go To Contact Us Page And Contact With us";
+         return view('website.bullding.noPermation', compact('bulldingInfo', 'messageTitle', 'messageBody'));
+
+      }
+
+      return view('website.usersBullding.userEdit', compact('bulldingInfo', 'user'));
+   }
+
+   /**
+   * update the users bullding
+   *
+   * @return view
+   */
+   public function usersUpdateUnApprovedBullding(BulldingRequest $request, Bullding $bullding)
+   {
+      // find the bullding by id
+      $bulldingInfo = $bullding->findOrFail($request->id);
+      // fill except the image
+      $bulldingInfo->fill(array_except($request->all(), 'image'))->save();
+      // check if there is an image request
+      if ($request->file('image')) {
+         $file = image($request->image, false, $bulldingInfo->image);
+         if ($file == '') {
+            return redirect()->back()->with(['fail' => 'please Choose An Image 1440 * 1920']);
+         }
+         $bulldingInfo->fill(['image' => 'src/images/bullding/' . $file])->save();
+      }
+      return redirect()->back()->withSuccess('the bullding updated successfully');
+   }
+   /**
+   * update the status of bullding
+   *
+   * @return view
+   */
+   public function changeStatus($id, $status, Bullding $bullding)
+   {
+      // find the bullding by id
+      $bulldingInfo = $bullding->findOrFail($id);
+      // fill except the image
+      $bulldingInfo->fill(['status' => $status])->save();
+      return redirect()->back()->withSuccess('the bullding Changed Its status successfully');
+   }
 }

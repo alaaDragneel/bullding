@@ -103,7 +103,7 @@ if($(this).index() == 4){
  }
 
 });
-var url = "{{ route('bullding.data') }}";
+var url = "{{ url('admin/bullding/data') }}{{$id}}";
 var table = $('#myTableData').DataTable({
  processing: true,
  serverSide: true,

@@ -6,7 +6,6 @@
 
 @section('styles')
      {!! Html::style('src/global/bulldingAll.css') !!}
-     {!! Html::style('src/global/select2.min.css') !!}
      <style>
      hr {
           margin: 10px 0;
@@ -55,7 +54,8 @@
                          </div>
                          <br>
                          <br>
-                         <img src="{{ asset($bulldingInfo->image) }}" class="img-responsive img-thumbnail" style="margin: auto; display: block;">
+                         <?php $img = $bulldingInfo->image; ?>
+                         <img src="{{ $img !== '' ? asset($img) : asset(avatar()) }}" class="img-responsive img-thumbnail" style="margin: auto; display: block;">
                          <p style="margin-top: 10px;">
                               {!! nl2br($bulldingInfo->decription) !!}
                          </p>
@@ -64,9 +64,12 @@
                     </div>
                     {{-- similer --}}
                     <div class="profile-content" style="margin-top: 20px;">
-                         <h3>others Bullding</h3>
+                         <h3 class="text-center">others Bullding</h3>
+                         <h3>Same Operation Type</h3>
                          <hr>
                          @include('website.bullding.sharefile', ['bulldings' => $sameRent])
+                         <h3>Same Type</h3>
+                         <hr>
                          @include('website.bullding.sharefile', ['bulldings' => $sameType])
                     </div>
                </div>
@@ -75,10 +78,6 @@
 @endsection
 
 @section('footer')
-     {!! Html::script('src/global/select2.min.js') !!}
-     <script type="text/javascript">
-          $('select[name=place]').select2();
-     </script>
      <script>
           function myMap() {
                var myCenter = new google.maps.LatLng({{ $bulldingInfo->langtuide }}, {{ $bulldingInfo->latitiute }});

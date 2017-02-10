@@ -77,11 +77,14 @@ class UsersController extends Controller
    */
    public function edit($user_id)
    {
-      $user = User::find($user_id);
+      $user = User::findOrFail($user_id);
+      $bullding = $user->buldings()->orderBy('id', 'DESC')->paginate(10, ['*'], 'bullding');
+      $bulldingWaiting = $user->buldings()->where('status', 0)->orderBy('id', 'DESC')->paginate(10, ['*'], 'bullding');
+      $bulldingEnabled = $user->buldings()->where('status', 1)->orderBy('id', 'DESC')->paginate(10, ['*'], 'bullding');
       if(!$user){
          return redirect()->route('users')->with(['fail' => 'This User Doesn\'t Exist']);
       }
-      return view('admin.users.edit', compact('user'));
+      return view('admin.users.edit', compact('user', 'bullding', 'bulldingWaiting', 'bulldingEnabled'));
    }
 
    /**
@@ -143,8 +146,11 @@ class UsersController extends Controller
          return Html::link(''.route("edit.user", ['user_id' => $model->id]).'', $model->name );
       })
       ->editColumn('userType', function ($model) {
-         return $model->userType == 0 ? '<span class="badge badge-info">'.'user'.'</span>' : '<span class="badge badge-info">'.'admin'.'</span>';
-      })///admin/users/". $model->id ."/edit
+         return $model->userType == 0 ? '<span class="label label-primary">'.'user'.'</span>' : '<span class="label label-info">'.'admin'.'</span>';
+      })
+      ->editColumn('myBullding', function ($model) {
+         return '<a href="'.url("/admin/bulldings/{$model->id}").'" class="btn btn-warning btn-block"><i class="fa fa-link"></i></a>';
+      })
       ->editColumn('actions', function ($model) {
          $all = '<a href="'.route("edit.user", ['user_id' => $model->id]).'" class="btn btn-info btn-block"><i class="fa fa-edit"></i> Edit</a>';
          if($model->id !== 1){

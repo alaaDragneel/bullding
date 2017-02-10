@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-     This Bullding Waiting Admin Permetion
+     {{ $messageTitle }}
 @endsection
 
 @section('styles')
      {!! Html::style('src/global/bulldingAll.css') !!}
-     {!! Html::style('src/global/select2.min.css') !!}
 @endsection
 
 @section('content')
@@ -21,7 +20,8 @@
                     </ol>
                     <div class="profile-content">
                          <div class="alert alert-danger">
-                              <b>Warning</b> Building {{ $bulldingInfo->name }} Is Found But Waiting Admin Permetion This Building Will Publish In Maximum 24 Hours
+                              <b>Warning</b> 
+                              {{ $messageBody }}
                          </div>
                     </div>
                </div>

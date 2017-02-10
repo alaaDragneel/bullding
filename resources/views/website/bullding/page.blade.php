@@ -21,18 +21,24 @@
                          <a href="{{ route('user.show.bullding') }}">
                               <i class="fa fa-building"></i>
                               My Bullding
+                              <label class="label label-info pull-right">{{ bulldingCountForUser(Auth::user()->id, true) }}</label>
+                              <div class="clearfix"></div>
                          </a>
                     </li>
                     <li class="{{ Request::is('user/show/bullding/approved') ? 'active' : '' }}">
                          <a href="{{ route('user.show.bullding.approved') }}">
                               <i class="fa fa-check"></i>
                               My Approved Bullding
+                              <label class="label label-success pull-right">{{ bulldingCountForUser(Auth::user()->id, false, 1) }}</label>
+                              <div class="clearfix"></div>
                          </a>
                     </li>
                     <li class="{{ Request::is('user/show/bullding/unappreved') ? 'active' : '' }}">
                          <a href="{{ route('user.show.bullding.unappreved') }}">
                               <i class="fa fa-clock-o"></i>
                               My UnApproved Bullding
+                              <label class="label label-danger pull-right">{{ bulldingCountForUser(Auth::user()->id, false, 0) }}</label>
+                              <div class="clearfix"></div>
                          </a>
                     </li>
                     <li class="{{ Request::is('users/bullding/create') ? 'active' : '' }}">

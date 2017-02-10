@@ -42,7 +42,7 @@ Route::group(['middleware' => 'admin'], function () {
             'store' => 'create.user',
             'edit' => 'edit.user',
             'update' => 'update.user'
-         ]
+         ],
       ]);
 
       Route::get('/users/{user_id}/delete', [
@@ -61,19 +61,29 @@ Route::group(['middleware' => 'admin'], function () {
       'as' => 'siteSetting.update'
       ]);
 
-      Route::resource('/bulldings', 'BulldingController');
+      Route::resource('/bulldings', 'BulldingController', ['except'=> ['index', 'show']]);
 
+      Route::get('/bulldings/{id?}', [
+         'uses' => 'BulldingController@index',
+         'as' => 'admin.bulldings.index',
+      ]);
+
+      Route::get('/bulldings/changeStatus/{id}/{status}', [
+         'uses' => 'BulldingController@changeStatus',
+         'as' => 'admin.bulldings.changeStatus'
+      ]);
 
       Route::get('/bulldings/{id}/delete', [
-      'uses' => 'BulldingController@destroy',
-      'as' => 'admin.bulldings.destroy'
+         'uses' => 'BulldingController@destroy',
+         'as' => 'admin.bulldings.destroy'
       ]);
+
 
       Route::resource('/contacts', 'contactController');
 
       Route::get('/contacts/{id}/delete', [
-      'uses' => 'contactController@destroy',
-      'as' => 'contact.destroy'
+         'uses' => 'contactController@destroy',
+         'as' => 'contact.destroy'
       ]);
 
    });
@@ -187,6 +197,20 @@ Route::get('/user/show/bullding/approved', [
 Route::get('/user/show/bullding/unappreved', [
    'uses' => 'BulldingController@usersUnApprovedBullding',
    'as' => 'user.show.bullding.unappreved',
+   'middleware' => 'auth',
+]);
+
+// get the users edit unappreved bullding
+Route::get('/user/edit/bullding/unappreved/{id}', [
+   'uses' => 'BulldingController@usersEditUnApprovedBullding',
+   'as' => 'user.edit.bullding.unappreved',
+   'middleware' => 'auth',
+]);
+
+// get the users edit unappreved bullding
+Route::post('/user/update/bullding/unappreved', [
+   'uses' => 'BulldingController@usersUpdateUnApprovedBullding',
+   'as' => 'user.update.bullding.unappreved',
    'middleware' => 'auth',
 ]);
 

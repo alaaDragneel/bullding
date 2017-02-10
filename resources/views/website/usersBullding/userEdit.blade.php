@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-     Add New Bullding
+     Edit Bullding {{ $bulldingInfo->name }}
 @endsection
 
 @section('styles')
@@ -15,10 +15,11 @@
                <div class="col-md-9">
                     <ol class="breadcrumb" style="margin-bottom: 5px; background-color: #fff;">
                          <li><a href="{{ url('/') }}">Home</a></li>
-                         <li><a href="{{ route('users.create.bullding') }}">Add New Bullding</a></li>
+                         <li><a href="{{ route('user.show.bullding.unappreved') }}">My unappreved Bullding</a></li>
+                         <li><a href="{{  route('user.edit.bullding.unappreved', ['id' => $bulldingInfo->id]) }}">Edit Bullding {{ $bulldingInfo->name }}</a></li>
                     </ol>
                     <div class="profile-content">
-                         @include('website.usersBullding.form')
+                         @include('website.usersBullding.editBullding')
                     </div>
                </div>
           </div>

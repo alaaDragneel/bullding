@@ -22,7 +22,11 @@
 		               <h3 class="box-title">Add New Bullding</h3>
 		             </div>
 		             <!-- /.box-header -->
-					   	@include('admin.bullding.form')
+                              {!! Form::open(['method' => 'post', 'route' => 'admin.bulldings.store', 'class' => 'form-horizontal', 'files' => 'true']) !!}
+
+                              @include('admin.bullding.form')
+
+                              {!! Form::close() !!}
 				   </div>
 			    </div>
 	    		</div>

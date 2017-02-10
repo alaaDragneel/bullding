@@ -20,6 +20,8 @@
                                              <span class="btn btn-danger btn-sm"> UnApproved
                                                   <i class="fa fa-clock-o"></i>
                                              </span>
+                                             <a href="{{ route('user.edit.bullding.unappreved', ['id' => $bullding->id]) }}"
+                                                class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit Bullding</a>
                                         @else
                                              <a href="{{ route('show.single.bullding', ['id' => $bullding->id]) }}" class="btn btn-primary btn-sm" role="button">Show Details
                                                   <span class="glyphicon glyphicon-info-sign"></span>
@@ -28,12 +30,12 @@
                                    </div>
                                    <div class="pricetext">{{ $bullding->price }}</div>
                               </div>
-                              </div>
                          </div>
-                    @endforeach
-               </div>
-          @endforeach
-          <div class="clearfix"></div>
-     @else
-          <div class="alert alert-danger">No Bullding Now</div>
-     @endif
+                    </div>
+               @endforeach
+          </div>
+     @endforeach
+     <div class="clearfix"></div>
+@else
+     <div class="alert alert-danger">No Bullding Now</div>
+@endif

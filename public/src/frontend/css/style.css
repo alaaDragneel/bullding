@@ -24,7 +24,7 @@ body a {
 .header {
 	background: #fff;
 	padding: 2em 0;
-	border-top: 3px solid #188777;
+	border-top: 3px solid #31708f;
 }
 .navbar-brand {
 	font-size: 32px;
@@ -34,10 +34,10 @@ body a {
 	padding: 5px;
 }
 .navbar-brand:hover {
-	color: #188777;
+	color: #31708f;
 }
 .navbar-brand .fa {
-	color: #2abb9b;
+	color: #31708f;
 }
 .menu {
 	float: right;
@@ -61,14 +61,14 @@ body a {
 	letter-spacing: 1px;
 }
 #nav .current a {
-	color: #188777;
+	color: #31708f;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
 .menu li a:hover, .menu li.active a {
-	color: #188777;
+	color: #31708f;
 	background: #fff !important;
 }
 .toggleMenu {
@@ -195,7 +195,7 @@ body a {
 	line-height: 0.6em;
 }
 .featured_content {
-	background: #188777;
+	background: #31708f;
 }
 .feature_grid1 {
 	width: 23.5%;
@@ -235,7 +235,7 @@ p.m_2 {
 	padding: 6px 20px;
 	font-size: 1em;
 	cursor: pointer;
-	background: #188777;
+	background: #31708f;
 	color: #fff;
 	font-weight: 500;
 	text-decoration: none;
@@ -316,7 +316,7 @@ a:focus {
 }
 .footer_bottom {
 	padding: 2em 0;
-	background: #188777;
+	background: #31708f;
 }
 .copy {
 	text-align: center;
@@ -383,7 +383,7 @@ h3.m_2 {
 	padding-bottom: 50px;
 }
 .service_box .fa {
-	color: #188777;
+	color: #31708f;
 }
 .service_box h2 {
 	font-size: 1.6em;
@@ -495,7 +495,7 @@ h3.m_2 {
 	width: 18px;
 	height: 18px;
 	margin-right: 5px;
-	color: #188777;
+	color: #31708f;
 	text-align: center;
 	border-radius: 50%;
 	margin-left: 6px;
@@ -590,7 +590,7 @@ a.social-icon:hover, a.social-icon:active, a.social-icon:focus {
 	font-size: 1em;
 	cursor: pointer;
 	border: none;
-	background: #188777;
+	background: #31708f;
 	color: #fff;
 	text-decoration: none;
 	outline: none;
